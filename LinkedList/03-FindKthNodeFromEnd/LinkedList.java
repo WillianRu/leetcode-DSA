@@ -68,25 +68,23 @@ public class LinkedList {
         }
     }
 
-	public Node findKthFromEnd(int k){
-        if (head == null || k <= 0) {
-            return null;
+	public Node findKthFromEnd(int k) {
+        Node slow = head;
+        Node fast = head;
+ 
+        for (int i = 0; i < k; i++) {
+            if (fast == null) {
+                return null;
+            }
+            fast = fast.next;
         }
-	    Node temp = head;
-	    Node ss = head;
-	    int count = 1;
-	    while(temp.next!=null){
-	        temp = temp.next;
-	        count++;
-	    }
-        if (k > count) {
-            return null;
+ 
+        while (fast != null) {
+            slow = slow.next;
+            fast = fast.next;
         }
-	    int index = count-k;
-	    for(int i=0; i<index; i++){
-	        ss=ss.next;
-	    }
-	    return ss;
-	}
+ 
+        return slow;
+    }
 }
 
